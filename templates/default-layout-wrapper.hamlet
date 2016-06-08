@@ -14,6 +14,7 @@ $newline never
 
     <link rel="stylesheet" href="@{StaticR css_bootstrap_min_css}">
     <script type="text/javascript" src="@{StaticR js_jquery_2_2_4_min_js}">
+    <script type="text/javascript" src="@{StaticR js_bootstrap_min_js}">
     <script type="text/javascript" src="@{StaticR js_js_cookie_js}">
     <script>
       var csrfHeaderName = "#{TE.decodeUtf8 $ CI.foldedCase defaultCsrfHeaderName}";

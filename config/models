@@ -1,7 +1,7 @@
 User
-  ident Text
+  name Text
   password Text Maybe
-  UniqueUser ident
+  UniqueUser name
   deriving Typeable
 Streamer
   name Text
@@ -12,13 +12,14 @@ Video
   ownerId StreamerId
   tags [Tag]
   competition Competition Maybe
+  chars [Character]
 Competition
   name Text
 Tag
   slug Text
   desc Text
 Character
-  ident Text
+  name Text
 VideoCharacter
   vidId VideoId
   charId CharacterId

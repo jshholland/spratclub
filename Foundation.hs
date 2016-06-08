@@ -4,7 +4,8 @@ import Import.NoFoundation
 import Database.Persist.Sql (ConnectionPool, runSqlPool)
 import Text.Hamlet          (hamletFile)
 import Text.Jasmine         (minifym)
-import Yesod.Auth.OpenId    (authOpenId, IdentifierType (Claimed))
+import Yesod.Auth.HashDB    (HashDBUser(..), authHashDB)
+import Yesod.Auth.Message   (AuthMessage(..))
 import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
@@ -123,6 +124,10 @@ instance YesodPersist App where
 instance YesodPersistRunner App where
     getDBRunner = defaultGetDBRunner appConnPool
 
+instance HashDBUser User where
+  userPasswordHash = userPassword
+  setPasswordHash h u = u { userPassword = Just h }
+
 instance YesodAuth App where
     type AuthId App = UserId
 
@@ -137,13 +142,10 @@ instance YesodAuth App where
         x <- getBy $ UniqueUser $ credsIdent creds
         case x of
             Just (Entity uid _) -> return $ Authenticated uid
-            Nothing -> Authenticated <$> insert User
-                { userIdent = credsIdent creds
-                , userPassword = Nothing
-                }
+            Nothing -> return $ UserError InvalidLogin
 
     -- You can add other plugins like Google Email, email or OAuth here
-    authPlugins _ = [authOpenId Claimed []]
+    authPlugins _ = [authHashDB (Just . UniqueUser)]
 
     authHttpManager = getHttpManager
 

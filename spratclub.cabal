@@ -50,6 +50,7 @@ library
                  , yesod                         >= 1.4.3      && < 1.5
                  , yesod-core                    >= 1.4.17     && < 1.5
                  , yesod-auth                    >= 1.4.0      && < 1.5
+                 , yesod-auth-hashdb             >= 1.5.0      && < 1.6
                  , yesod-static                  >= 1.4.0.3    && < 1.6
                  , yesod-form                    >= 1.4.0      && < 1.5
                  , classy-prelude                >= 0.10.2

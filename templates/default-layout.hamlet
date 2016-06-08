@@ -1,3 +1,6 @@
 $maybe msg <- mmsg
-  <div #message>#{msg}
+  <div .alert .alert-info .alert-dismissible .fade .in role="alert">
+    <button type="button" data-dismiss="alert" aria-label="Close" .close>
+      <span aria-hidden="true">&times;
+    #{msg}
 ^{widget}
