@@ -46,9 +46,8 @@ instance Yesod App where
     -- Controls the base of generated URLs. For more information on modifying,
     -- see: https://github.com/yesodweb/yesod/wiki/Overriding-approot
     approot = ApprootRequest $ \app req ->
-        case appRoot $ appSettings app of
-            Nothing -> getApprootText guessApproot app req
-            Just root -> root
+        fromMaybe (getApprootText guessApproot app req)
+          $ appRoot $ appSettings app
 
     -- Store session data on the client in encrypted cookies,
     -- default session idle timeout is 120 minutes
@@ -74,9 +73,7 @@ instance Yesod App where
         -- value passed to hamletToRepHtml cannot be a widget, this allows
         -- you to use normal widget features in default-layout.
 
-        pc <- widgetToPageContent $ do
-            addStylesheet $ StaticR css_bootstrap_css
-            $(widgetFile "default-layout")
+        pc <- widgetToPageContent $(widgetFile "default-layout")
         withUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 
     -- The page to be redirected to when authentication is required.
