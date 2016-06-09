@@ -6,13 +6,15 @@ User
 Streamer
   name Text
   link Text
+Player
+  name Text
 Video
   title Text
   link Text
   ownerId StreamerId
   tags [Tag]
   competition Competition Maybe
-  chars [Character]
+  chars [VideoPlayerCharacterId]
 Competition
   name Text
 Tag
@@ -20,7 +22,8 @@ Tag
   desc Text
 Character
   name Text
-VideoCharacter
+VideoPlayerCharacter
   vidId VideoId
+  playerId PlayerId
   charId CharacterId
-  UniqueVideoCharacter vidId charId
+  UniqueVideoPlayerCharacter vidId playerId charId
