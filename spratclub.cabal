@@ -22,6 +22,8 @@ library
                      Settings.StaticFiles
                      Handler.Common
                      Handler.Home
+                     Handler.Admin
+                     Handler.EditUser
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -100,6 +102,8 @@ test-suite test
     main-is:           Spec.hs
     other-modules:     Handler.CommonSpec
                        Handler.HomeSpec
+                       Handler.Admin
+                       Handler.EditUser
                        TestImport
     hs-source-dirs:    test
     ghc-options:       -Wall

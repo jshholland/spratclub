@@ -1,20 +1,17 @@
 User
   name Text
   password Text Maybe
+  admin Bool
+  link Text Maybe
   UniqueUser name
   deriving Typeable
-Streamer
-  name Text
-  link Text
-Player
-  name Text
 Video
   title Text
   link Text
-  ownerId StreamerId
-  tags [Tag]
+  ownerId UserId
   competition Competition Maybe
   chars [VideoPlayerCharacterId]
+  tags [Tag]
 Competition
   name Text
 Tag
@@ -24,6 +21,6 @@ Character
   name Text
 VideoPlayerCharacter
   vidId VideoId
-  playerId PlayerId
+  playerId UserId
   charId CharacterId
   UniqueVideoPlayerCharacter vidId playerId charId

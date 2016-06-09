@@ -41,6 +41,13 @@ mkYesodData "App" $(parseRoutesFile "config/routes")
 -- | A convenient synonym for creating forms.
 type Form x = Html -> MForm (HandlerT App IO) (FormResult x, Widget)
 
+requireAdmin :: Handler AuthResult
+requireAdmin = do
+  (Entity _ user) <- requireAuth
+  if userAdmin user
+     then return Authorized
+     else return $ Unauthorized "You are not an admin"
+
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.
 instance Yesod App where
@@ -84,6 +91,8 @@ instance Yesod App where
     isAuthorized (AuthR _) _ = return Authorized
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
+    isAuthorized AdminR _ = requireAdmin
+    isAuthorized EditUserR _ = requireAdmin
     -- Default to Authorized for now.
     isAuthorized _ _ = return Authorized
 
