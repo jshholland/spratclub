@@ -34,6 +34,16 @@ $newline never
   <body>
     <div class="container">
       <header>
+        <nav .navbar .navbar-default>
+          <div .container-fluid>
+            <div .navbar-header>
+              <a href="@{HomeR}" .navbar-brand>sprat.club
+              <p .navbar-text>Find Yomi videos by player, character or competition!
+            $maybe Entity _ user <- muser
+              <div .navbar-right>
+                <p .navbar-text>
+                  Logged in as #{userName user}.
+                <a href="@{AuthR LogoutR}" .btn .btn-default .navbar-btn>Log out
       <div id="main" role="main">
         ^{pageBody pc}
       <footer>

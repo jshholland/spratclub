@@ -4,5 +4,5 @@ import Import
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
-  setTitle "spratclub"
+  setTitle "sprat.club"
   $(widgetFile "homepage")
