@@ -4,7 +4,7 @@ import Import.NoFoundation
 import Database.Persist.Sql (ConnectionPool, runSqlPool)
 import Text.Hamlet          (hamletFile)
 import Text.Jasmine         (minifym)
-import Yesod.Auth.HashDB    (HashDBUser(..), authHashDB)
+import Yesod.Auth.HashDB    (authHashDB)
 import Yesod.Auth.Message   (AuthMessage(..))
 import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
@@ -123,10 +123,6 @@ instance YesodPersist App where
         runSqlPool action $ appConnPool master
 instance YesodPersistRunner App where
     getDBRunner = defaultGetDBRunner appConnPool
-
-instance HashDBUser User where
-  userPasswordHash = userPassword
-  setPasswordHash h u = u { userPassword = Just h }
 
 instance YesodAuth App where
     type AuthId App = UserId
