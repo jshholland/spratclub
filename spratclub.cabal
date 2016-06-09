@@ -23,7 +23,7 @@ library
                      Handler.Common
                      Handler.Home
                      Handler.Admin
-                     Handler.EditUser
+                     Handler.EditUsers
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

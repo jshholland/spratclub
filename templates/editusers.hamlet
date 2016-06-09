@@ -1,0 +1,30 @@
+<h1>
+  User admin
+<form .form-inline role=form method=post action=@{EditUsersR} enctype=#{formEnctype}>
+  ^{formWidget}
+<table .table>
+  <tr>
+    <th>Name
+    <th>Has password?
+    <th>Is admin?
+    <th>Link
+  $forall Entity _ (User name mpass admin mlink) <- users
+    <tr>
+      <td>#{name}
+      <td>
+        $maybe _ <- mpass
+          <span .glyphicon .glyphicon-ok aria-hidden="true">
+          <p .sr-only>yes
+        $nothing
+          <span .glyphicon .glyphicon-remove aria-hidden="true">
+          <p .sr-only>no
+      <td>
+        $if admin
+          <span .glyphicon .glyphicon-ok aria-hidden="true">
+          <p .sr-only>yes
+        $else
+          <span .glyphicon .glyphicon-remove aria-hidden="true">
+          <p .sr-only>no
+      <td>
+        $maybe link <- mlink
+          <a href="#{link}">#{link}

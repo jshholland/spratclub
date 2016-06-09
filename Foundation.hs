@@ -93,7 +93,7 @@ instance Yesod App where
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
     isAuthorized AdminR _ = requireAdmin
-    isAuthorized EditUserR _ = requireAdmin
+    isAuthorized EditUsersR _ = requireAdmin
     -- Default to Authorized for now.
     isAuthorized _ _ = return Authorized
 

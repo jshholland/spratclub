@@ -6,4 +6,4 @@
 
 / HomeR GET
 /admin AdminR GET
-/admin/user EditUserR GET POST
+/admin/users EditUsersR GET POST
